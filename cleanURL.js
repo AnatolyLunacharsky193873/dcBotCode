@@ -12,20 +12,28 @@ client.once(Events.ClientReady, () => {
     console.log(`Logged in as ${client.user.username}`)
 })
 const b23msg = /https:\/\/b23\.tv\/[A-Za-z0-9]+/g
+const shareID = "&share_session_id="
 
 client.on(Events.MessageCreate, async (msg) => {
     if(msg.author.bot) return
-    if (!msg.content.match(b23msg)) return
-    try{
+    
+    try {
         let newMsg = msg.content
-        for (const b23 of msg.content.match(b23msg)){
-            const res = await fetch(b23, {redirect: "follow"})
-            const clearURL = res.url.split("?")[0]
-            newMsg = newMsg.replace(b23, clearURL)
-
+        
+        if (msg.content.match(b23msg)){
+            for (const b23 of msg.content.match(b23msg)){
+                const res = await fetch(b23, {redirect: "follow"})
+                const clearURL = res.url.split("?")[0]
+                newMsg = newMsg.replace(b23, clearURL)
+            }
+            await msg.delete()
+            await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
         }
-        await msg.delete()
-        await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
+        else if(msg.content.includes(shareID)){
+            newMsg = msg.content.split("?")[0]
+            await msg.delete()
+            await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
+        }
     }
     catch(err){
         const errorDetails = {
