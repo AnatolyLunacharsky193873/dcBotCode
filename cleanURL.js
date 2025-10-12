@@ -20,6 +20,7 @@ const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性
 
 const b23msg = /https:\/\/b23\.tv\/[A-Za-z0-9]+/g
 const shareID = "&share_session_id="
+const vdSource = "vd_source="
 
 client.on(Events.MessageCreate, async (msg) => {
     if(msg.author.bot) return
@@ -44,7 +45,7 @@ client.on(Events.MessageCreate, async (msg) => {
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
         }
-        else if(msg.content.includes(shareID)){
+        else if(msg.content.includes(shareID || vdSource)){
             newMsg = msg.content.split("?")[0]
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
