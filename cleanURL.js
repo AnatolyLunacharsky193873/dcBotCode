@@ -45,7 +45,7 @@ client.on(Events.MessageCreate, async (msg) => {
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
         }
-        else if(msg.content.includes(shareID || vdSource)){
+        else if (msg.content.includes(shareID) || msg.content.includes(vdSource)) {
             newMsg = msg.content.split("?")[0]
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
