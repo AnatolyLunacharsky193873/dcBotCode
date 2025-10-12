@@ -14,7 +14,7 @@ client.once(Events.ClientReady, () => {
 
 //禁止性压抑
 const blacklistedUserIds = new Set([
-    "957987432115077181"
+    "1319150902979989546", "tryzh0043"
 ])
 const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性"]
 
