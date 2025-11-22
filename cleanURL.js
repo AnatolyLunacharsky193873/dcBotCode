@@ -16,7 +16,7 @@ client.once(Events.ClientReady, () => {
 const blacklistedUserIds = new Set([
     "1319150902979989546", "tryzh0043"
 ])
-const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性", "杯水主义", "cb", "x"]
+const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性", "杯水主义", "cb", "x", "male", "female","兴","xing","nan","man","women","公","母","钕"]
 
 const b23msg = /https:\/\/b23\.tv\/[A-Za-z0-9]+/g
 const shareID = "&share_session_id="
