@@ -16,7 +16,7 @@ client.once(Events.ClientReady, () => {
 const blacklistedUserIds = new Set([
     "1319150902979989546", "tryzh0043"
 ])
-const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性", "杯水主义", "cb", "x", "male", "female","兴","xing","nan","man","women","公","母","钕"]
+const blockedWords = ["操","逼","男","女","丑","好看","帅","集美","性", "杯水主义", "cb", "x", "male", "female","兴","xing","nan","man","women","公","母","钕","集美"]
 
 const b23msg = /https:\/\/b23\.tv\/[A-Za-z0-9]+/g
 const shareID = "&share_session_id="
@@ -41,6 +41,7 @@ client.on(Events.MessageCreate, async (msg) => {
                 const res = await fetch(b23, {redirect: "follow"})
                 const clearURL = res.url.split("?")[0]
                 newMsg = newMsg.replace(b23, clearURL)
+                newMsg = newMsg.slice(0,-1) + "fixBili"
             }
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
