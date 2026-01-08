@@ -39,9 +39,9 @@ client.on(Events.MessageCreate, async (msg) => {
         if (msg.content.match(b23msg)){
             for (const b23 of msg.content.match(b23msg)){
                 const res = await fetch(b23, {redirect: "follow"})
-                const clearURL = res.url.split("?")[0]
+                let clearURL = res.url.split("?")[0]
+                clearURL = clearURL.replace(/\/$/, "") + "fixBili"
                 newMsg = newMsg.replace(b23, clearURL)
-                newMsg = newMsg.slice(0,-1) + "fixBili"
             }
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
@@ -63,4 +63,4 @@ client.on(Events.MessageCreate, async (msg) => {
     }
 })
 
-client.login(process.env.DISCORD_TOKEN)
+ 
