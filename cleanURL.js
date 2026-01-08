@@ -48,6 +48,7 @@ client.on(Events.MessageCreate, async (msg) => {
         }
         else if (msg.content.includes(shareID) || msg.content.includes(vdSource)) {
             newMsg = msg.content.split("?")[0]
+            newMsg = newMsg.replace(/\/$/, "") + "fixBili"
             await msg.delete()
             await msg.channel.send(`${msg.author.username} said: ${newMsg}`)
         }
